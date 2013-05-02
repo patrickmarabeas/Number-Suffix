@@ -4,41 +4,12 @@
 		$this = $(this);
 		var defaults = {
 			prefix: '$',
-			suffix: ['K','M','B','T']
+			suffix: ['','K','M','B','T']
 		}
 		var config = $.extend(defaults, config);
 
-		function suffix(x) {
-			
-			switch (x.length) {
-				case 0:
-				case 1:
-				case 2:
-				case 3:
-					return '';
-					break;
-				case 4:
-				case 5:
-				case 6:
-					return config.suffix[0];
-					break;
-				case 7:
-				case 8:
-				case 9:
-					return config.suffix[1];
-					break;
-				case 10:
-				case 11:
-				case 12:
-					return config.suffix[2];
-					break;
-				case 13:
-				case 14:
-				case 15:
-					return config.suffix[3];
-					break;
-
-			}
+		function suffix(x) {	
+			return config.suffix[Math.max(0, Math.floor((x.length-1)/3))];
 		}
 		
 		//ensure only numbers exist
